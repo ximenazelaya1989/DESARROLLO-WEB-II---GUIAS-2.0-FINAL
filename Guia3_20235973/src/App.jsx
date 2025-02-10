@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Logo, Nav, NumResults, Search } from "./components/Nav";
 import { Box } from "./components/Box";
 import { MovieList } from "./components/Movie";
@@ -13,6 +13,11 @@ import { MovieDetails } from "./components/MovieDetails";
 
 export default function App() {
 
+  function initialWatchedMovies() {
+    const localStorageWatched = localStorage.getItem("watched");
+    return localStorageWatched ? JSON.parse(localStorageWatched) : [];
+  }
+
   //Estado para la busqueda de peliculas
   const [query, setQuery] = useState("");
 
@@ -20,11 +25,15 @@ export default function App() {
   const { movies, isLoading, error } = useFetchMovies(query);
 
   //Estado de peliculas vistas
-  const [watched, setWatched] = useState([]);
+  const [watched, setWatched] = useState(initialWatchedMovies);
 
   //Estado para la pelicula sleccionada
   const [selectedId, setSelectedId] = useState(null);
 
+
+  useEffect(() => {
+    localStorage.setItem("watched", JSON.stringify(watched));
+  }, [watched]);
   /**
    * Maneja la seleccion de una pelicula
    * @param {string} id - ID de la pelicula seleccionada
