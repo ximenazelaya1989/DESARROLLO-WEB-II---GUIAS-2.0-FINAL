@@ -15,8 +15,8 @@ export default function Modal() {
     const handleClickFavorite = useAppStore((state) => state.handleClickFavorite)
     const favoriteExists = useAppStore((state) => state.favoriteExists)
 
+    
     //Funcion para renderizar la lista de ingredientes de una bebida
-
     const renderIngredients = () => {
         const ingredients = []
         for (let i = 0; i < 10; i++) {
@@ -90,6 +90,7 @@ export default function Modal() {
                                         </button>
                                         <button type='button' onClick={() => {
                                             handleClickFavorite(selectedRecipe)
+
                                             closeModal()
                                         }} className='w-full rounded bg-orange-600 p-3 font-bold uppercase text-white shaodw hover:bg-orange-500'>
                                             {favoriteExists(selectedRecipe.idDrink) ? 'Eliminar favorito' : 'Agregar a Favoritos'}

@@ -19,6 +19,9 @@ export const createFavoritesSlice = (set, get) => ({
             set((state) => ({
                 favorites: [...state.favorites, recipe]
             }));
+
+            state.add
+
         }
         //Guardamos la lista de favoritos actualizada de favorites en localStorage
         localStorage.setItem('favorites', JSON.stringify(get().favorites));
