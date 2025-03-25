@@ -15,8 +15,9 @@ function SearchForm() {
         })
     }
 
-    const fetchCategories = useAppStore((state) => state.fetchCategories)
-    const categories = useAppStore((state) => state.categories)
+    const fetchCategories = useAppStore((state) => state.fetchCategories);
+    const categories = useAppStore((state) => state.categories);
+    const addNotification = useAppStore((state)=>state.addNotification)
 
     useEffect(() => {
         fetchCategories()
